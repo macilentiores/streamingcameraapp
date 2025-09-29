@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="horizontal">
+
+        <WebView
+            android:id="@+id/wv_obs_preview"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1" />
+
+        <WebView
+            android:id="@+id/wv_youtube_preview"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1" />
+    </LinearLayout>
+
+    <EditText
+        android:id="@+id/et_proclaim_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Proclaim Service Name (auto-fetched)" />
+
+    <ProgressBar
+        android:id="@+id/pb_volume_mic1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:max="100"
+        style="?android:attr/progressBarStyleHorizontal" />
+
+    <ProgressBar
+        android:id="@+id/pb_volume_mic2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:max="100"
+        style="?android:attr/progressBarStyleHorizontal" />
+
+    <Button
+        android:id="@+id/btn_start_stream"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Start Stream" />
+
+    <Button
+        android:id="@+id/btn_stop_stream"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Stop Stream" />
+</LinearLayout>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/streamSetupFragment">
+
+    <fragment
+        android:id="@+id/streamSetupFragment"
+        android:name="com.example.streamingcameraapp.StreamSetupFragment"
+        android:label="Stream Setup" />
+
+    <fragment
+        android:id="@+id/cameraControlFragment"
+        android:name="com.example.streamingcameraapp.CameraControlFragment"
+        android:label="Camera Control" />
+</navigation>
