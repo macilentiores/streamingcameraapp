@@ -1,17 +1,18 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
-    alias(libs.plugins.kotlin.compose) // Keep Compose plugin if you might use it later
 }
+
+
 
 android {
     namespace = "com.example.streamingcameraapp"
-    compileSdk = 36
+    compileSdk = 34
 
     defaultConfig {
         applicationId = "com.example.streamingcameraapp"
         minSdk = 24
-        targetSdk = 36
+        targetSdk = 34
         versionCode = 1
         versionName = "1.0"
 
@@ -38,6 +39,26 @@ android {
         compose = true // Keep Compose enabled if you plan to use it
         viewBinding = true // Enable viewBinding
     }
+    composeOptions {
+        kotlinCompilerExtensionVersion = "1.5.12"
+    }
+}
+
+configurations.all {
+    resolutionStrategy {
+        eachDependency {            
+            if (requested.group == "androidx.core" && (requested.name == "core" || requested.name == "core-ktx")) {
+                useVersion(libs.versions.coreKtx.get())
+                because("Align with AGP 8.4.0 compatibility and project settings")
+            }
+            
+            if (requested.group == "androidx.lifecycle" &&
+                (requested.name == "lifecycle-runtime-compose-android" || requested.name == "lifecycle-runtime-compose")) {
+                 useVersion(libs.versions.lifecycleRuntimeKtx.get())
+                 because("Align with AGP 8.4.0 compatibility and project settings for lifecycle")
+            }
+        }
+    }
 }
 
 dependencies {
@@ -57,9 +78,16 @@ dependencies {
     implementation("androidx.constraintlayout:constraintlayout:2.1.4") // For ConstraintLayout
     implementation("androidx.webkit:webkit:1.11.0") // For WebView
 
+    // Navigation Component
+    implementation("androidx.navigation:navigation-fragment-ktx:2.9.5")
+    implementation("androidx.navigation:navigation-ui-ktx:2.9.5")
+
+    // OkHttp
+    implementation("com.squareup.okhttp3:okhttp:4.12.0") { exclude(group = "org.codehaus.mojo", module = "animal-sniffer-annotations") }
+
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
-    androidTestImplementation(libs.androidx.espresso.core)
+    androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1") { version { strictly("3.5.1") } }
     androidTestImplementation(platform(libs.androidx.compose.bom)) // For Compose, if used
     androidTestImplementation(libs.androidx.ui.test.junit4) // For Compose, if used
     debugImplementation(libs.androidx.ui.tooling) // For Compose, if used

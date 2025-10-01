@@ -1,58 +1,127 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto" 
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="16dp">
 
+    
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="OBS Output WebView"
+            android:gravity="center"
+            android:textAppearance="?attr/textAppearanceListItemSmall" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="YouTube Live Embed"
+            android:gravity="center"
+            android:textAppearance="?attr/textAppearanceListItemSmall" />
+    </LinearLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:baselineAligned="false">
 
         <WebView
             android:id="@+id/wv_obs_preview"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="1" />
+            android:layout_weight="1"
+            android:layout_marginEnd="4dp"/>
 
         <WebView
             android:id="@+id/wv_youtube_preview"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="1" />
+            android:layout_weight="1"
+            android:layout_marginStart="4dp"/>
     </LinearLayout>
+
+    <TextView
+        android:id="@+id/tv_stream_status"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Stream Status: Offline"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:gravity="center_horizontal"
+        android:paddingTop="8dp"
+        android:paddingBottom="8dp"/>
 
     <EditText
         android:id="@+id/et_proclaim_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Proclaim Service Name (auto-fetched)" />
+        android:hint="Proclaim Service Name (auto-fetched)"
+        android:inputType="text" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Volume Meters:"
+        android:textAppearance="?attr/textAppearanceListItemSmall"
+        android:paddingTop="8dp"/>
 
     <ProgressBar
         android:id="@+id/pb_volume_mic1"
+        style="?android:attr/progressBarStyleHorizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:max="100"
-        style="?android:attr/progressBarStyleHorizontal" />
+        android:progressBackgroundTint="#FFCCCCCC" />
 
     <ProgressBar
         android:id="@+id/pb_volume_mic2"
+        style="?android:attr/progressBarStyleHorizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:max="100"
-        style="?android:attr/progressBarStyleHorizontal" />
+        android:progressBackgroundTint="#FFCCCCCC" />
 
-    <Button
-        android:id="@+id/btn_start_stream"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Start Stream" />
+        android:orientation="horizontal"
+        android:gravity="center_horizontal"
+        android:paddingTop="16dp">
 
-    <Button
-        android:id="@+id/btn_stop_stream"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Stop Stream" />
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_setup_stream"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Setup Stream"
+            app:backgroundTint="?attr/colorPrimary" 
+            android:textColor="?attr/colorOnPrimary" 
+            android:layout_marginEnd="8dp"/>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_start_stream"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Start Stream"
+            app:backgroundTint="?attr/colorPrimary" 
+            android:textColor="?attr/colorOnPrimary" 
+            android:layout_marginEnd="8dp"/>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_stop_stream"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:backgroundTint="?attr/colorPrimary" 
+            android:textColor="?attr/colorOnPrimary" 
+            android:text="Stop Stream" />
+    </LinearLayout>
 </LinearLayout>
